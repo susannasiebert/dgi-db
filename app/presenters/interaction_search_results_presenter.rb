@@ -35,6 +35,10 @@ class InteractionSearchResultsPresenter
     @search_results.select{ |x| x.interaction_claims.count > 0 }.count
   end
 
+  def all_interactions
+    @all_interactions ||= interaction_result_presenters(@search_results)
+  end
+
   def ambiguous_results
     Maybe(grouped_results[:ambiguous])
   end
@@ -155,10 +159,22 @@ class InteractionSearchResultsPresenter
   end
 
   def interaction_result_presenters(result_list)
+    # passes search_term, gene (if found), interaction (if found)
     result_list.flat_map do |result|
-      result.interaction_claims.map do |interaction|
-        InteractionSearchResultPresenter.new(interaction, result.search_term)
+      if result.genes.length == 0
+        InteractionSearchResultPresenter.new(result.search_term, nil, nil)
+      else
+        if result.interaction_claims.length == 0 
+          result.genes.map do |gene|
+            InteractionSearchResultPresenter.new(result.search_term, gene, nil)
+          end
+        else
+          result.interaction_claims.map do |interaction|
+            InteractionSearchResultPresenter.new(result.search_term, interaction.gene_claim.genes.first, interaction)
+          end
+        end
       end
     end
   end
 end
+
