@@ -25,8 +25,7 @@
       .tab-pane.active#test2_tab
         .row-fluid
           .span12
-            -if @search_results.show_definite?
-              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Search Results:", interactions: @search_results.all_interactions, tooltip_text: tx("definite_results_passed_filter_flag")}
+            =render partial: 'interaction_claims/interaction_results_table', locals: {title: '', interactions: @search_results.all_interactions, tooltip_text: tx("definite_results_passed_filter_flag")}
       .tab-pane.fade#search_summary_tab
         =render partial: 'interaction_claims/results_summary', locals: {results: @search_results}
       .tab-pane.fade#term_summary_tab
