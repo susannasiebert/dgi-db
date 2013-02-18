@@ -5,6 +5,7 @@ class InteractionClaimsController < ApplicationController
     @drug = @interaction.drug_claim
     @gene = @interaction.gene_claim
     @title = "#{@drug.name} acting on #{@gene.name}"
+    @gene_alt_names = @gene.genes.map { |gene| gene.name }
   end
 
   def interaction_search_results

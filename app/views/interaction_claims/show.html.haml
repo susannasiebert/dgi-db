@@ -15,6 +15,9 @@
         %p
           %b Gene:
           =link_to @gene.name, "/gene_claims/#{@gene.source_db_name}/#{@gene.name}"
+          ="("
+          =link_to "#{@gene_alt_names[0]}", "/genes/#{@gene_alt_names[0]}"  
+          =")"
         %p
           %b Source Database Name:
           =link_to @interaction.source.source_db_name, source_path(@interaction.source.source_db_name)
