@@ -1,8 +1,11 @@
 .well
-  %p
-    %h3
-      =title
-      %i.icon-flag.tip{title: tooltip_text}
+  -if @search_results.show_no_results_results?
+    %p
+      %strong(style="color:red")
+        Unrecognized search terms!
+      %strong
+        -@search_results.no_results_results.each do |result|
+          = result.search_term
   %table.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
     %thead
       %tr

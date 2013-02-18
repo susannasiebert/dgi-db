@@ -175,10 +175,12 @@ class InteractionSearchResultsPresenter
         end
       end
     end.sort do |a,b|
+      # sort so that gene "3 of 5" for a term (below) will consistently be the same gene
       a.term <=> b.term or
       a.gene.name <=> b.gene.name
     end
 
+    # put "(n of nn)" after search terms with ambiguous gene mappings
     term_gene_count = {}
     term_gene_n = {}
     last_term = ''
