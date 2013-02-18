@@ -18,11 +18,14 @@
       %td
         =link_to interaction_table_row.source_db_name, source_path(interaction_table_row.source_db_name)
     -else 
-      %td no interactions found!
+      %td 
+        %em
+          (no interactions)
       %td - 
       %td -
   -else
-    %td no gene found!
+    %td(style="color:red") 
+      no gene found!
     %td -
     %td -
     %td -
