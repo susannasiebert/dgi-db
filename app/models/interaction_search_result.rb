@@ -10,6 +10,10 @@ class InteractionSearchResult
       .uniq
   end
 
+  def genes
+    @genes
+  end
+
   def is_ambiguous?
     genes.length > 1
   end

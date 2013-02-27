@@ -9,6 +9,8 @@
   .tabbable
     %ul.nav.nav-tabs
       %li.active
+        %a(href="#test2_tab" data-toggle="tab") Test 2 (one list)
+      %li
         %a(href="#interaction_tab" data-toggle="tab") Interaction Results
       %li
         %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
@@ -19,6 +21,10 @@
       %li
         %a(href="#by_source" data-toggle="tab") By Source
     .tab-content
+      .tab-pane.active#test2_tab
+        .row-fluid
+          .span12
+            =render partial: 'interaction_claims/interaction_results_table', locals: {title: '', interactions: @search_results.all_interactions, tooltip_text: tx("definite_results_passed_filter_flag")}
       .tab-pane.fade#search_summary_tab
         =render partial: 'interaction_claims/results_summary', locals: {results: @search_results}
       .tab-pane.fade#term_summary_tab
@@ -27,7 +33,7 @@
         =render partial: 'interaction_claims/results_by_source_table', locals: {results: @search_results}
       .tab-pane.fade#by_gene
         =render partial: 'interaction_claims/results_by_gene_table', locals: {results: @search_results}
-      .tab-pane.active#interaction_tab
+      .tab-pane#interaction_tab
         .row-fluid
           .span12
             -if @search_results.show_definite?

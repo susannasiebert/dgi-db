@@ -35,6 +35,10 @@ class InteractionSearchResultsPresenter
     @search_results.select{ |x| x.interaction_claims.count > 0 }.count
   end
 
+  def all_interactions
+    @all_interactions ||= interaction_result_presenters(@search_results)
+  end
+
   def ambiguous_results
     Maybe(grouped_results[:ambiguous])
   end
@@ -155,10 +159,53 @@ class InteractionSearchResultsPresenter
   end
 
   def interaction_result_presenters(result_list)
-    result_list.flat_map do |result|
-      result.interaction_claims.map do |interaction|
-        InteractionSearchResultPresenter.new(interaction, result.search_term)
+    # passes search_term, gene (if found), interaction (if found)
+    rows = result_list.flat_map do |result|
+      if result.genes.length == 0
+        OpenStruct.new(term: result.search_term, gene: nil, interaction: nil)
+      else
+        if result.interaction_claims.length == 0 
+          result.genes.map do |gene|
+            OpenStruct.new(term: result.search_term, gene: gene, interaction: nil)
+          end
+        else
+          result.interaction_claims.map do |interaction|
+            OpenStruct.new(term: result.search_term, gene: interaction.gene_claim.genes.first, interaction: interaction)
+          end
+        end
       end
+    end.sort do |a,b|
+      # sort so that gene "3 of 5" for a term (below) will consistently be the same gene
+      a.term <=> b.term or
+      a.gene.name <=> b.gene.name
+    end
+
+    # put "(n of nn)" after search terms with ambiguous gene mappings
+    term_gene_count = {}
+    term_gene_n = {}
+    last_term = ''
+    last_gene = ''
+    rows.each do |row|
+      if ! term_gene_n.has_key?(row.term)
+        # new term
+        term_gene_n[row.term] = { row.gene => 1 }
+        term_gene_count[row.term] = 1
+      else
+        if ! term_gene_n[row.term].has_key?(row.gene)
+          # old term new gene
+          term_gene_count[row.term] = term_gene_count[row.term]+1 
+          term_gene_n[row.term][row.gene] = term_gene_count[row.term] 
+        else
+          # old term old gene
+        end
+      end
+    end
+    rows.map do |row|
+      gene_n = term_gene_n[row.term][row.gene]
+      gene_count = term_gene_count[row.term]
+      show_term = if gene_count <= 1 then row.term else row.term + ' (' + gene_n.to_s + ' of ' + gene_count.to_s + ')' end
+      InteractionSearchResultPresenter.new(show_term,row.gene,row.interaction)
     end
   end
 end
+
