@@ -4,21 +4,24 @@ $ ->
     last_row = null 
     rows.each(
       (row_n) ->
-        row = this
         if (last_row != null)
+          row = this
+          distinct_data_found = false
           $(this).children("td").each(
             (col_n) -> 
               this_cell = row.cells[col_n].innerHTML
               prev_cell = last_row.cells[col_n].innerHTML
               if (this_cell != prev_cell)
+                distinct_data_found = true
+              if distinct_data_found
                 this.style.opacity = 1
               else
                 this.style.opacity = .5
           )
-        last_row = row
+        last_row = this 
     )
 
-  $(".table[id!='table-by-source'][id!='refine-results-table']").dataTable
+  $(".table[id!='table-by-source'][id!='refine-results-table']").dataTable(
     sPaginationType: "bootstrap"
     sDom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>"
     sWrapper: "dataTables_wrapper form-inline"
@@ -26,6 +29,7 @@ $ ->
       sSearch: 'Filter results:'
       sLengthMenu: "_MENU_ records per page"
     fnDrawCallback: (o) -> poptable(o.nTable)
+  )#.bind('sort', (o) -> alert(o.nTable)) 
 
   lastCol = $('#table-by-source th').size()-1
   $("#table-by-source").dataTable
