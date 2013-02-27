@@ -203,8 +203,8 @@ class InteractionSearchResultsPresenter
     rows.map do |row|
       gene_n = term_gene_n[row.term][row.gene]
       gene_count = term_gene_count[row.term]
-      show_term = if gene_count <= 1 then row.term else row.term + ' (' + gene_n.to_s + ' of ' + gene_count.to_s + ')' end
-      InteractionSearchResultPresenter.new(show_term,row.gene,row.interaction)
+      #show_term = if gene_count <= 1 then row.term else row.term + ' (' + gene_n.to_s + ' of ' + gene_count.to_s + ')' end
+      InteractionSearchResultPresenter.new(row.term,row.gene,row.interaction)
     end
   end
 end
