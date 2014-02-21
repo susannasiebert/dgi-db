@@ -68,6 +68,8 @@ DruggableGene::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  config.eager_load = true
+
   if defined?(PhusionPassenger)
     require 'phusion_passenger/rack/out_of_band_gc'
     # Trigger out-of-band GC every 5 requests.

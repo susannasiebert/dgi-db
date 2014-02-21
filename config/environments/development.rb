@@ -29,6 +29,8 @@ DruggableGene::Application.configure do
   # Use a different cache store in dev
   config.cache_store = :file_store, 'tmp/cache/dev'
 
+  config.eager_load = false
+
   #use pry instead of irb as default console
   silence_warnings do
       begin
