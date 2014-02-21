@@ -9,7 +9,7 @@ class LookupRelatedDrugs
       .map { |dca| dca.drug_claim }
       .flat_map { |dc| dc.drugs }
 
-    drugs.uniq_by { |d| d.id }
+    drugs.uniq { |d| d.id }
       .reject { |d| d.name == drug_name }
       .map { |d| RelatedDrugPresenter.new(d) }
   end
