@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.17'
+gem 'rails', '4.0.3'
 
 gem 'pg'
 gem 'less-rails-bootstrap'
 gem 'nokogiri'
 gem 'haml'
 gem 'textacular', require: 'textacular/rails'
-gem 'jquery-rails', '2.1.4'
-gem 'therubyracer', '~> 0.11.1'
-gem 'libv8', '~> 3.11.8.3', :platform => :ruby
+gem 'jquery-rails'
+gem 'therubyracer'
+gem 'libv8'
 gem 'less-rails'
 gem 'exception_notification'
 gem 'rake'
@@ -21,12 +21,6 @@ gem 'rye'
 
 group :production do
   gem 'dalli'
-end
-
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
 end
 
 group :development do
@@ -42,10 +36,13 @@ group :test, :development  do
   gem "capybara"
   gem "launchy"
   gem 'better_errors'
-  gem 'binding_of_caller', '~> 0.7.0'
+  gem 'binding_of_caller'
   gem 'activerecord-import'
   gem 'stamp'
   gem 'database_cleaner'
   gem 'coveralls'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
