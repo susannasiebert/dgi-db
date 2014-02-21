@@ -9,7 +9,7 @@ class SourcesController < ApplicationController
 
   def sources
     @help_active = 'active'
-    @sources = DataModel::Source.for_show.all
+    @sources = DataModel::Source.for_show
       .map { |s| SourcePresenter.new(s, view_context) }
   end
 
