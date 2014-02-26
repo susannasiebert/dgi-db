@@ -70,7 +70,7 @@ GEM
       actionmailer (>= 3.0.4)
       activesupport (>= 3.0.4)
     execjs (2.0.2)
-    fabrication (2.9.8)
+    fabrication (2.7.2)
     haml (4.0.5)
       tilt
     highline (1.6.20)
