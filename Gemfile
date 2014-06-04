@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.1'
 
 gem 'pg'
 gem 'less-rails-bootstrap'
@@ -41,7 +41,6 @@ group :test, :development  do
   gem 'stamp'
   gem 'database_cleaner'
   gem 'coveralls'
-  gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
 end
