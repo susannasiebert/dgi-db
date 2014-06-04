@@ -1,4 +1,4 @@
-class Identity
+class IdentityFilter
   include Filter
 
   attr_reader :axis

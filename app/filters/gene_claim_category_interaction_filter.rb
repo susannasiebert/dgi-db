@@ -1,4 +1,4 @@
-class GeneClaimCategoryInteraction
+class GeneClaimCategoryInteractionFilter
   include Filter
 
   def initialize(category)

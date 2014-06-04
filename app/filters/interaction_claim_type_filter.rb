@@ -1,4 +1,4 @@
-class InteractionClaimType
+class InteractionClaimTypeFilter
   include Filter
   def initialize(type)
     @type = type.downcase

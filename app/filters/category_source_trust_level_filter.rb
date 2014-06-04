@@ -1,4 +1,4 @@
-class SourceTrustLevel
+class CategorySourceTrustLevelFilter
   include Filter
 
   def initialize(trust_level)
@@ -6,7 +6,7 @@ class SourceTrustLevel
   end
 
   def cache_key
-    "source_trust_level.#{@source_trust_level}"
+    "category_source_trust_level.#{@source_trust_level}"
   end
 
   def axis
@@ -17,7 +17,8 @@ class SourceTrustLevel
     Set.new DataModel::Source
       .where('lower(source_trust_levels.level) = ?', @source_trust_level)
       .joins(:source_trust_level)
-      .joins(:interaction_claims)
-      .pluck('interaction_claims.id')
+      .joins(:gene_claims)
+      .pluck('gene_claims.id')
+      .uniq
   end
 end

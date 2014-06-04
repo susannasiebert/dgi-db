@@ -1,4 +1,4 @@
-class CategorySourceDbName
+class CategorySourceDbNameFilter
   include Filter
 
   def initialize(source_db_name)

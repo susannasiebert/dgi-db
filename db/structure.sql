@@ -66,10 +66,10 @@ CREATE TABLE drug_claim_types (
 
 
 --
--- Name: drug_claim_types_drug_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: drug_claim_types_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE drug_claim_types_drug_claims (
+CREATE TABLE drug_claim_types_claims (
     drug_claim_id character varying(255) NOT NULL,
     drug_claim_type_id character varying(255) NOT NULL
 );
@@ -146,10 +146,10 @@ CREATE TABLE gene_claim_categories (
 
 
 --
--- Name: gene_claim_categories_gene_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: gene_claim_categories_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE gene_claim_categories_gene_claims (
+CREATE TABLE gene_claim_categories_claims (
     gene_claim_id character varying(255) NOT NULL,
     gene_claim_category_id character varying(255) NOT NULL
 );
@@ -236,10 +236,10 @@ CREATE TABLE interaction_claim_types (
 
 
 --
--- Name: interaction_claim_types_interaction_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: interaction_claim_types_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE interaction_claim_types_interaction_claims (
+CREATE TABLE interaction_claim_types_claims (
     interaction_claim_type_id character varying(255) NOT NULL,
     interaction_claim_id character varying(255) NOT NULL
 );
@@ -334,7 +334,7 @@ ALTER TABLE ONLY drug_claim_attributes
 -- Name: drug_claim_types_drug_claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY drug_claim_types_drug_claims
+ALTER TABLE ONLY drug_claim_types_claims
     ADD CONSTRAINT drug_claim_types_drug_claims_pkey PRIMARY KEY (drug_claim_id, drug_claim_type_id);
 
 
@@ -390,7 +390,7 @@ ALTER TABLE ONLY gene_claim_attributes
 -- Name: gene_claim_categories_gene_claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY gene_claim_categories_gene_claims
+ALTER TABLE ONLY gene_claim_categories_claims
     ADD CONSTRAINT gene_claim_categories_gene_claims_pkey PRIMARY KEY (gene_claim_id, gene_claim_category_id);
 
 
@@ -454,7 +454,7 @@ ALTER TABLE ONLY interaction_claim_attributes
 -- Name: interaction_claim_types_interaction_claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY interaction_claim_types_interaction_claims
+ALTER TABLE ONLY interaction_claim_types_claims
     ADD CONSTRAINT interaction_claim_types_interaction_claims_pkey PRIMARY KEY (interaction_claim_type_id, interaction_claim_id);
 
 
@@ -776,7 +776,7 @@ ALTER TABLE ONLY gene_gene_interaction_claim_attributes
 -- Name: fk_drug_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY drug_claim_types_drug_claims
+ALTER TABLE ONLY drug_claim_types_claims
     ADD CONSTRAINT fk_drug_claim FOREIGN KEY (drug_claim_id) REFERENCES drug_claims(id) MATCH FULL;
 
 
@@ -808,7 +808,7 @@ ALTER TABLE ONLY interaction_claims
 -- Name: fk_drug_claim_type; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY drug_claim_types_drug_claims
+ALTER TABLE ONLY drug_claim_types_claims
     ADD CONSTRAINT fk_drug_claim_type FOREIGN KEY (drug_claim_type_id) REFERENCES drug_claim_types(id) MATCH FULL;
 
 
@@ -816,7 +816,7 @@ ALTER TABLE ONLY drug_claim_types_drug_claims
 -- Name: fk_gene_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY gene_claim_categories_gene_claims
+ALTER TABLE ONLY gene_claim_categories_claims
     ADD CONSTRAINT fk_gene_claim FOREIGN KEY (gene_claim_id) REFERENCES gene_claims(id) MATCH FULL;
 
 
@@ -824,7 +824,7 @@ ALTER TABLE ONLY gene_claim_categories_gene_claims
 -- Name: fk_gene_claim_category; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY gene_claim_categories_gene_claims
+ALTER TABLE ONLY gene_claim_categories_claims
     ADD CONSTRAINT fk_gene_claim_category FOREIGN KEY (gene_claim_category_id) REFERENCES gene_claim_categories(id) MATCH FULL;
 
 
@@ -880,7 +880,7 @@ ALTER TABLE ONLY gene_gene_interaction_claims
 -- Name: fk_interaction_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY interaction_claim_types_interaction_claims
+ALTER TABLE ONLY interaction_claim_types_claims
     ADD CONSTRAINT fk_interaction_claim FOREIGN KEY (interaction_claim_id) REFERENCES interaction_claims(id) MATCH FULL;
 
 
@@ -896,7 +896,7 @@ ALTER TABLE ONLY interaction_claim_attributes
 -- Name: fk_interaction_claim_type; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY interaction_claim_types_interaction_claims
+ALTER TABLE ONLY interaction_claim_types_claims
     ADD CONSTRAINT fk_interaction_claim_type FOREIGN KEY (interaction_claim_type_id) REFERENCES interaction_claim_types(id) MATCH FULL;
 
 
@@ -977,3 +977,6 @@ INSERT INTO schema_migrations (version) VALUES ('20130712222803');
 INSERT INTO schema_migrations (version) VALUES ('20130712225648');
 
 INSERT INTO schema_migrations (version) VALUES ('20130906013631');
+
+INSERT INTO schema_migrations (version) VALUES ('20140604201956');
+

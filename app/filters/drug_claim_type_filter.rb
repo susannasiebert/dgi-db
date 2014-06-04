@@ -1,4 +1,4 @@
-class DrugClaimType
+class DrugClaimTypeFilter
   include Filter
 
   def initialize(type)

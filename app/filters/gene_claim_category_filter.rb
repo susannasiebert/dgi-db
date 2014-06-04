@@ -1,4 +1,4 @@
-class GeneClaimCategory
+class GeneClaimCategoryFilter
   include Filter
 
   def initialize(category)
