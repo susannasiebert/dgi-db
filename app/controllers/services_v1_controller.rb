@@ -1,23 +1,23 @@
 class ServicesV1Controller < ApplicationController
 
   def gene_categories
-    render_format DataModel::GeneClaimCategory.all_category_names
+    render_format GeneClaimCategory.all_category_names
   end
 
   def drug_types
-   render_format DataModel::DrugClaimType.all_type_names
+   render_format DrugClaimType.all_type_names
   end
 
   def interaction_types
-    render_format DataModel::InteractionClaimType.all_type_names
+    render_format InteractionClaimType.all_type_names
   end
 
   def interaction_sources
-    render_format DataModel::Source.source_names_with_interactions
+    render_format Source.source_names_with_interactions
   end
 
   def source_trust_levels
-    render_format DataModel::SourceTrustLevel.all_trust_levels
+    render_format SourceTrustLevel.all_trust_levels
   end
 
   def gene_categories_for_sources
@@ -28,7 +28,7 @@ class ServicesV1Controller < ApplicationController
 
   def genes_in_category
     category_name = params[:category].upcase
-    DataModel::GeneClaimCategory.where(name: category_name).any? ||
+    GeneClaimCategory.where(name: category_name).any? ||
       not_found("Sorry, no category with the name #{category_name} was found.")
 
     render_format LookupCategories.gene_names_in_category(category_name)
@@ -49,7 +49,7 @@ class ServicesV1Controller < ApplicationController
 
   def gene_id_mapping
     validate_gene_id_mapping_request(params)
-    gene_claim = DataModel::GeneClaim.for_gene_id_mapping
+    gene_claim = GeneClaim.for_gene_id_mapping
       .where(name: params[:gene_id]).first ||
       not_found("A gene with the ID #{params[:gene_id]} was not found!")
 

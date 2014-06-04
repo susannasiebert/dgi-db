@@ -31,7 +31,7 @@ module Genome
 
       def self.backfill_with_default_type
         type = default_type
-        interactions_with_no_type = DataModel::InteractionClaim.eager_load(:interaction_claim_types)
+        interactions_with_no_type = InteractionClaim.eager_load(:interaction_claim_types)
           .select { |ic| ic.interaction_claim_types.size == 0 }
         interactions_with_no_type.each do |i|
           i.interaction_claim_types << type
@@ -39,11 +39,11 @@ module Genome
       end
 
       def self.default_type
-        DataModel::InteractionClaimType.where(type: 'n/a').first
+        InteractionClaimType.where(type: 'n/a').first
       end
 
       def self.other_type
-        DataModel::InteractionClaimType.where(type: 'other/unknown').first
+        InteractionClaimType.where(type: 'other/unknown').first
       end
 
       def self.add_unless_exists(type, interaction_claim)
@@ -64,12 +64,12 @@ module Genome
       end
 
       def self.claim_type_attributes
-        DataModel::InteractionClaimAttribute.where('lower(name) = ?', 'interaction type')
+        InteractionClaimAttribute.where('lower(name) = ?', 'interaction type')
         .includes(interaction_claim: [:interaction_claim_types])
       end
 
       def self.all_interaction_claim_types
-        DataModel::InteractionClaimType.all.each_with_object({}) do |i, h|
+        InteractionClaimType.all.each_with_object({}) do |i, h|
           h[i.type] = i
         end
       end

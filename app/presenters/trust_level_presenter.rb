@@ -1,6 +1,6 @@
 class TrustLevelPresenter
   def self.source_link_with_trust_flag(context, source)
-    type = if source.source_trust_level_id == DataModel::SourceTrustLevel.EXPERT_CURATED
+    type = if source.source_trust_level_id == SourceTrustLevel.EXPERT_CURATED
                'success'
               else
                 'warning'

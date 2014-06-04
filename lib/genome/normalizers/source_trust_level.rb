@@ -37,8 +37,8 @@ module Genome
       def self.save_trust_levels
         source_map = {}
         trust_levels.each do |level|
-          existing_trust_level = DataModel::SourceTrustLevel.where(level: level).first
-          source_map[level] = existing_trust_level || DataModel::SourceTrustLevel.new.tap do |s|
+          existing_trust_level = SourceTrustLevel.where(level: level).first
+          source_map[level] = existing_trust_level || SourceTrustLevel.new.tap do |s|
             s.level = level
             s.id = SecureRandom.uuid
             s.save
@@ -49,7 +49,7 @@ module Genome
 
       def self.assign_trust_levels(source_map)
         trust_level_map.each do |trust_level, sources|
-          DataModel::Source.where(source_db_name: sources).each do |source|
+          Source.where(source_db_name: sources).each do |source|
             source.source_trust_level = source_map[trust_level]
             source.save
           end

@@ -115,8 +115,9 @@ describe FilterChain do
 
   it 'should define include and exclude methods for registered filters' do
     Filter.all_filters.each do |filter|
-      expect(@filter_chain.respond_to?("include_#{filter}")).to be true
-      expect(@filter_chain.respond_to?("exclude_#{filter}")).to be true
+      filter_method_name = filter.gsub(/_filter$/,'')
+      expect(@filter_chain.respond_to?("include_#{filter_method_name}")).to be true
+      expect(@filter_chain.respond_to?("exclude_#{filter_method_name}")).to be true
     end
   end
 

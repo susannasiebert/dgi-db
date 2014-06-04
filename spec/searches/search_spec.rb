@@ -3,12 +3,12 @@ require 'spec_helper'
 describe Search do
   before :each do
     @entities = {
-        DataModel::Gene => :name,
-        DataModel::Drug => :name,
-        DataModel::GeneClaimAlias => :alias,
-        DataModel::DrugClaimAlias => :alias,
-        DataModel::GeneClaim => :name,
-        DataModel::DrugClaim => :name
+        Gene => :name,
+        Drug => :name,
+        GeneClaimAlias => :alias,
+        DrugClaimAlias => :alias,
+        GeneClaim => :name,
+        DrugClaim => :name
     }
   end
 

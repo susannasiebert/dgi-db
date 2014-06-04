@@ -140,13 +140,13 @@ module Genome
 
 
         def create_source!
-          DataModel::Source.new.tap do |s|
+          Source.new.tap do |s|
             s.id                = SecureRandom.uuid
             s.base_url          = 'http://drugbank.ca/'
             s.site_url          = 'http://drugbank.ca/'
             s.citation          = "DrugBank 3.0: a comprehensive resource for 'omics' research on drugs. Knox C, Law V, ..., Eisner R, Guo AC, Wishart DS. Nucleic Acids Res. 2011 Jan;39(Database issue)1035-41. PMID: 21059682."
             s.source_db_version = @source_db_version
-            s.source_type_id    = DataModel::SourceType.INTERACTION
+            s.source_type_id    = SourceType.INTERACTION
             s.source_db_name    = 'DrugBank'
             s.full_name         = 'DrugBank - Open Data Drug & Drug Target Database'
             s.save

@@ -13,7 +13,7 @@ class InteractionClaimTypeFilter
   end
 
   def resolve
-    Set.new DataModel::InteractionClaimType
+    Set.new InteractionClaimType
       .where('lower(type) = ?', @type)
       .includes(:interaction_claims)
       .select("interaction_claims.id")

@@ -231,7 +231,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   less-rails
-  less-rails-bootstrap
+  less-rails-bootstrap (= 3.1.1.1)
   libv8
   lograge
   nokogiri

@@ -14,7 +14,7 @@ class CategorySourceTrustLevelFilter
   end
 
   def resolve
-    Set.new DataModel::Source
+    Set.new Source
       .where('lower(source_trust_levels.level) = ?', @source_trust_level)
       .joins(:source_trust_level)
       .joins(:gene_claims)

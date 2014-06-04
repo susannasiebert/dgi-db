@@ -20,13 +20,13 @@ class Source < ActiveRecord::Base
   end
 
   def self.potentially_druggable_source_names
-    where(source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE)
+    where(source_type_id: SourceType.POTENTIALLY_DRUGGABLE)
     .pluck(:source_db_name)
     .sort
   end
 
   def self.source_names_with_interactions
-    where(source_type_id: DataModel::SourceType.INTERACTION)
+    where(source_type_id: SourceType.INTERACTION)
     .pluck(:source_db_name)
     .sort
   end

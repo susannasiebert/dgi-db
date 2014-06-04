@@ -14,11 +14,11 @@ class LookupGenes
     results_to_gene_groups = search_terms.each_with_object({}) { |term, h| h[term] = [] }
     results.each do |result|
       case result
-      when DataModel::Gene
+      when Gene
         results_to_gene_groups[result.name] << result
-      when DataModel::GeneClaimAlias
+      when GeneClaimAlias
         results_to_gene_groups[result.alias] += result.gene_claim.genes
-      when DataModel::GeneClaim
+      when GeneClaim
         results_to_gene_groups[result.name] += result.genes
       end
     end
@@ -27,11 +27,11 @@ class LookupGenes
 
   def self.match_search_terms_to_objects(search_terms, scope)
     search_terms = search_terms.dup
-    gene_results = DataModel::Gene.send(scope).where(name: search_terms)
+    gene_results = Gene.send(scope).where(name: search_terms)
     search_terms = search_terms - gene_results.map(&:name)
-    gene_alias_results = DataModel::GeneClaimAlias.send(scope).where(alias: search_terms)
+    gene_alias_results = GeneClaimAlias.send(scope).where(alias: search_terms)
     search_terms = search_terms - gene_alias_results.map(&:alias)
-    gene_claim_results = DataModel::GeneClaim.send(scope).where(name: search_terms)
+    gene_claim_results = GeneClaim.send(scope).where(name: search_terms)
 
     gene_results.concat(gene_alias_results).concat(gene_claim_results)
   end

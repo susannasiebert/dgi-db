@@ -8,7 +8,7 @@ module Genome
           site_url:           'http://www.geneontology.org/',
           citation:           'Gene ontology: tool for the unification of biology. The Gene Ontology Consortium. Ashburner M, Ball CA, ..., Rubin GM, Sherlock G. Nat Genet. 2000 May;25(1):25-9. PMID: 10802651.',
           source_db_version:  '30-Aug-2012',
-          source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
+          source_type_id:     SourceType.POTENTIALLY_DRUGGABLE,
           source_db_name:     'GO',
           full_name:          'The Gene Ontology'
         }

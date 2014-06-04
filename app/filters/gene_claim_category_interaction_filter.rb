@@ -14,7 +14,7 @@ class GeneClaimCategoryInteractionFilter
   end
 
   def resolve
-    Set.new DataModel::GeneClaimCategory
+    Set.new GeneClaimCategory
       .where('lower(gene_claim_categories.name) = ?', @category)
       .joins(gene_claims: [genes: [gene_claims: [:interaction_claims]]])
       .select("interaction_claims.id")

@@ -14,7 +14,7 @@ class SourceDbNameFilter
   end
 
   def resolve
-    Set.new DataModel::Source
+    Set.new Source
       .where('lower(source_db_name) = ?', @source_db_name)
       .joins(:interaction_claims)
       .pluck('interaction_claims.id')

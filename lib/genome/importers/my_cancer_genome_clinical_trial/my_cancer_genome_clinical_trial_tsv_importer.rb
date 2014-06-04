@@ -7,8 +7,8 @@
               citation: 'http://www.mycancergenome.org/',
               site_url: 'http://www.mycancergenome.org/',
               source_db_version: '30-Feburary-2014',
-              source_type_id: DataModel::SourceType.INTERACTION,
-              source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
+              source_type_id: SourceType.INTERACTION,
+              source_trust_level_id: SourceTrustLevel.EXPERT_CURATED,
               source_db_name: 'MyCancerGenomeClinicalTrial',
               full_name: 'MyCancerGenome Clinical Trial',
           }

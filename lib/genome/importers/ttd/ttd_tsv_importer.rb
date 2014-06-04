@@ -7,7 +7,7 @@ module Genome
           site_url:          'http://bidd.nus.edu.sg/group/ttd/ttd.asp',
           citation:          "Update of TTD: Therapeutic Target Database. Zhu F, Han BC, ..., Zheng CJ, Chen YZ. Nucleic Acids Res. 38(suppl 1):D787-91, 2010. PMID: 19933260.",
           source_db_version:  '4.3.02 (2011.08.25)',
-          source_type_id:    DataModel::SourceType.INTERACTION,
+          source_type_id:    SourceType.INTERACTION,
           source_db_name:    'TTD',
           full_name:         'Therapeutic Target Database'
         }

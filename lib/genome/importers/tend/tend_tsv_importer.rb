@@ -7,7 +7,7 @@ module Genome
           site_url:          'http://www.ncbi.nlm.nih.gov/pubmed/21804595/',
           citation:          "Trends in the exploitation of novel drug targets. Rask-Andersen M, Almen MS, Schioth HB. Nat Rev Drug Discov. 2011 Aug 1;10(8):579-90. PMID: 21804595",
           source_db_version:  '01-Aug-2011',
-          source_type_id:    DataModel::SourceType.INTERACTION,
+          source_type_id:    SourceType.INTERACTION,
           source_db_name:    'TEND',
           full_name:         'Trends in the exploitation of novel drug targets (Rask-Andersen, et al., 2011)'
         }

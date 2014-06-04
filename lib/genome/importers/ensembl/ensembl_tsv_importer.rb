@@ -8,7 +8,7 @@ module Genome
           site_url:           'http://ensembl.org/index.html',
           citation:           'Ensembl 2011. Flicek P, Amode MR, ..., Vogel J, Searle SM. Nucleic Acids Res. 2011 Jan;39(Database issue)800-6. Epub 2010 Nov 2. PMID: 21045057.',
           source_db_version:  '68_37',
-          source_type_id:     DataModel::SourceType.GENE,
+          source_type_id:     SourceType.GENE,
           source_db_name:     'Ensembl',
           full_name:          'Ensembl'
         }

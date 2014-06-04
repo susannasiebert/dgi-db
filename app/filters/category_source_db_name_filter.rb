@@ -14,7 +14,7 @@ class CategorySourceDbNameFilter
   end
 
   def resolve
-    Set.new DataModel::GeneClaim
+    Set.new GeneClaim
       .joins(:source)
       .where('lower(sources.source_db_name) = ?', @source_db_name)
       .pluck('gene_claims.id')

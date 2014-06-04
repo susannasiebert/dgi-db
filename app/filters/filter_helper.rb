@@ -24,12 +24,12 @@ module FilterHelper
 
   def param_to_count_mapping
     @@PARAM_TO_COUNT_MAPPING ||= {
-      drug_types: DataModel::DrugClaimType.all_type_names.count,
-      interaction_sources: DataModel::Source.source_names_with_interactions.count,
-      gene_categories: DataModel::GeneClaimCategory.all_category_names.count,
-      interaction_types: DataModel::InteractionClaimType.all_type_names.count,
-      source_trust_levels: DataModel::SourceTrustLevel.all_trust_levels.count,
-      category_sources: DataModel::Source.potentially_druggable_source_names.count
+      drug_types: DrugClaimType.all_type_names.count,
+      interaction_sources: Source.source_names_with_interactions.count,
+      gene_categories: GeneClaimCategory.all_category_names.count,
+      interaction_types: InteractionClaimType.all_type_names.count,
+      source_trust_levels: SourceTrustLevel.all_trust_levels.count,
+      category_sources: Source.potentially_druggable_source_names.count
     }
   end
 end

@@ -20,8 +20,8 @@ describe Utils::Database do
     end
 
     def assert_source_deleted(source)
-      expect(DataModel::Source.where(source_db_name: source.source_db_name).count).to eq(0)
-      [DataModel::GeneClaim, DataModel::DrugClaim, DataModel::InteractionClaim].each do |klass|
+      expect(Source.where(source_db_name: source.source_db_name).count).to eq(0)
+      [GeneClaim, DrugClaim, InteractionClaim].each do |klass|
         expect(klass.joins(:source).where('sources.source_db_name = ?', source.source_db_name).count).to eq(0)
       end
     end
@@ -39,7 +39,7 @@ describe Utils::Database do
       Utils::Database.delete_source(source_to_delete.source_db_name)
       assert_source_deleted(source_to_delete)
 
-      expect(DataModel::Source.where(source_db_name: source_to_keep.source_db_name).count).to eq(1)
+      expect(Source.where(source_db_name: source_to_keep.source_db_name).count).to eq(1)
     end
   end
 end

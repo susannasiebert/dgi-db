@@ -1,10 +1,10 @@
 class LookupRelatedDrugs
 
   def self.find(drug_name)
-    drugs = DataModel::Drug.advanced_search(name: drug_name)
-    drugs += DataModel::DrugClaim.preload(:drugs)
+    drugs = Drug.advanced_search(name: drug_name)
+    drugs += DrugClaim.preload(:drugs)
       .advanced_search(name: drug_name).flat_map { |dc| dc.drugs }
-    drugs += DataModel::DrugClaimAlias.preload(drug_claim: [:drugs])
+    drugs += DrugClaimAlias.preload(drug_claim: [:drugs])
       .advanced_search(alias: drug_name)
       .map { |dca| dca.drug_claim }
       .flat_map { |dc| dc.drugs }

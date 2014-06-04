@@ -7,7 +7,7 @@ module Genome
           site_url:           'http://www.ncbi.nlm.nih.gov/pubmed/12209152/',
           citation:           'The druggable genome. Hopkins AL, Groom CR. Nat Rev Drug Discov. 2002 Sep;1(9):727-30. PMID: 12209152',
           source_db_version:  '11-Sep-2012',
-          source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
+          source_type_id:     SourceType.POTENTIALLY_DRUGGABLE,
           source_db_name:     'HopkinsGroom',
           full_name:          'The druggable genome (Hopkins & Groom, 2002)'
         }

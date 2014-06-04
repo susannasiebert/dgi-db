@@ -45,11 +45,11 @@ module Genome
 
       def create_source(source_info)
         source_info[:id] = SecureRandom.uuid
-        create_entity_from_hash(DataModel::Source, source_info)
+        create_entity_from_hash(Source, source_info)
       end
 
       def create_entity_from_hash(klass, hash)
-        klass.new.tap { |o| o.assign_attributes(hash, without_protection: true) }
+        klass.new.tap { |o| o.assign_attributes(hash) }
       end
 
       def entity_names
@@ -89,7 +89,7 @@ module Genome
       end
 
       def class_from_entity(entity)
-        "DataModel::#{entity.classify}".constantize
+        entity.classify.constantize
       end
     end
   end

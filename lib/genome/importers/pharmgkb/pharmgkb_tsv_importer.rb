@@ -7,7 +7,7 @@ module Genome
           site_url:          'http://www.pharmgkb.org/',
           citation:          "From pharmacogenomic knowledge acquisition to clinical applications: the PharmGKB as a clinical pharmacogenomic biomarker resource. McDonagh EM, Whirl-Carrillo M, Garten Y, Altman RB, Klein TE. Biomark Med. 2011 Dec;5(6):795-806. PMID: 22103613",
           source_db_version:  '12-Jul-2012',
-          source_type_id:    DataModel::SourceType.INTERACTION,
+          source_type_id:    SourceType.INTERACTION,
           source_db_name:    'PharmGKB',
           full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase'
         }

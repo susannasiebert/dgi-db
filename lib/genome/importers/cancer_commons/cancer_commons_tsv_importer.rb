@@ -8,8 +8,8 @@ module Genome
           site_url: 'http://www.cancercommons.org/',
           citation: 'Cancer Commons: Biomedicine in the Internet Age. Shrager J, Tenenbaum JM, and Travers M. Collaborative Computational Technologies for Biomedical Research, (Sean Elkins, Maggie Hupcey, and Antony Williams Eds). Wiley, 2010.',
           source_db_version: '25-Jul-2013',
-          source_type_id: DataModel::SourceType.INTERACTION,
-          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
+          source_type_id: SourceType.INTERACTION,
+          source_trust_level_id: SourceTrustLevel.EXPERT_CURATED,
           source_db_name: 'CancerCommons',
           full_name: 'Cancer Commons',
         }

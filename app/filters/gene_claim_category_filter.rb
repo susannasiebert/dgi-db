@@ -14,7 +14,7 @@ class GeneClaimCategoryFilter
   end
 
   def resolve
-    Set.new DataModel::GeneClaimCategory
+    Set.new GeneClaimCategory
       .where('lower(name) = ?', @category)
       .pluck('id')
       .uniq

@@ -37,7 +37,7 @@ describe Genome::Importers::Importer do
 
   it 'should create a source from the passed in hash' do
     source = @importer.instance_variable_get("@source")
-    expect(source).to be_a(DataModel::Source)
+    expect(source).to be_a(Source)
     expect(source.source_db_name).to eq('test')
   end
 
@@ -52,7 +52,7 @@ describe Genome::Importers::Importer do
     importer.create_gene_claim({ name: 'test gene claim 1', nomenclature: 'test 1'})
     importer.create_gene_claim({ name: 'test gene claim 2', nomenclature: 'test 2'})
     importer.store
-    db_claims = DataModel::GeneClaim.all
+    db_claims = GeneClaim.all
     expect(db_claims.size).to eq(2)
     expect(db_claims.map(&:name).sort).to eq(['test gene claim 1', 'test gene claim 2'])
   end
@@ -62,7 +62,7 @@ describe Genome::Importers::Importer do
     importer = Genome::Importers::Importer.new({}, source)
     importer.create_gene_claim({ name: 'test gene claim 1', nomenclature: 'test 1'})
     importer.store
-    expect(DataModel::GeneClaim.first.source).to eq(source)
+    expect(GeneClaim.first.source).to eq(source)
   end
 
 end

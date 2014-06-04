@@ -40,7 +40,7 @@ module Genome
         end
 
         def preload_genes
-          entrez_genes = DataModel::GeneClaim.joins(:genes).includes(:genes)
+          entrez_genes = GeneClaim.joins(:genes).includes(:genes)
           .where(nomenclature: 'Entrez Gene Id')
 
           entrez_genes.each do |gene_claim|
@@ -49,7 +49,7 @@ module Genome
         end
 
         def source
-          @source ||= DataModel::Source.where(source_db_name: 'Entrez').first
+          @source ||= Source.where(source_db_name: 'Entrez').first
         end
       end
     end

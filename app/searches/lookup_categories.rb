@@ -13,7 +13,7 @@ class LookupCategories
   end
 
   def self.gene_names_in_category(category_name)
-    DataModel::GeneClaimCategory
+    GeneClaimCategory
       .joins(gene_claims: [:genes])
       .where(name: category_name.upcase)
       .order('genes.name').uniq
@@ -21,7 +21,7 @@ class LookupCategories
   end
 
   def self.find_genes_for_category_and_sources(category_name, source_names)
-    DataModel::Gene.joins(gene_claims: [:gene_claim_categories, :source])
+    Gene.joins(gene_claims: [:gene_claim_categories, :source])
        .eager_load(gene_claims: [source: [:source_trust_level]])
        .where('lower(gene_claim_categories.name) = ?', category_name.downcase)
        .where('lower(sources.source_db_name) IN (?)', source_names.map(&:downcase))
@@ -31,7 +31,7 @@ class LookupCategories
   def self.get_category_names_with_counts_in_sources(sources)
     sources = Array(sources)
     Rails.cache.fetch("unique_category_names_with_counts_#{sources}") do
-      DataModel::GeneClaimCategory.joins(gene_claims: [:genes, :source])
+      GeneClaimCategory.joins(gene_claims: [:genes, :source])
         .where('sources.source_db_name' => sources)
         .group('gene_claim_categories.name')
         .order('gene_claim_categories.name ASC')

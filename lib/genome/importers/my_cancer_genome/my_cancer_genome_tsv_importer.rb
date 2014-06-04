@@ -8,7 +8,7 @@ module Genome
           site_url: 'http://www.mycancergenome.org/',
           citation: 'DNA-mutation Inventory to Refine and Enhance Cancer Treatment (DIRECT): A catalogue of clinically relevant cancer mutations to enable genome-directed cancer therapy. Yeh P, Chen H, Andrews J, Naser R, Pao W, Horn L. Clin Cancer Res. 2013 Jan 23. [Epub ahead of print]. PMID: 23344264.',
           source_db_version: '13-Mar-2013',
-          source_type_id: DataModel::SourceType.INTERACTION,
+          source_type_id: SourceType.INTERACTION,
           source_db_name: 'MyCancerGenome',
           full_name: 'My Cancer Genome'
         }

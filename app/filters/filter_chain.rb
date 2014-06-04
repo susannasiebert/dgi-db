@@ -10,8 +10,9 @@ class FilterChain
   #but once something is excluded, it can't be added back in
   #is that an acceptable limitation?
   Filter.all_filters.each do |filter|
+    filter_method_name = filter.gsub(/_filter$/,'')
     ['include', 'exclude'].each do |filter_type|
-      define_method "#{filter_type}_#{filter}" do |*filter_criteria|
+      define_method "#{filter_type}_#{filter_method_name}" do |*filter_criteria|
         instance_variable_get("@all_#{filter_type}") << filter.classify.constantize.new(*filter_criteria)
         instance_variable_set("@computed_#{filter_type}", nil)
         instance_variable_set("@computed_final", nil)

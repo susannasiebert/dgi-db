@@ -16,9 +16,9 @@ describe Genome::Groupers::GeneGrouper do
 
     Genome::Groupers::GeneGrouper.run
 
-    expect(DataModel::Gene.all.count).to eq DataModel::GeneClaimAlias.all.count
-    gene_names = DataModel::Gene.pluck(:name).sort
-    gene_claim_aliases = DataModel::GeneClaimAlias.pluck(:alias).sort
+    expect(Gene.all.count).to eq GeneClaimAlias.all.count
+    gene_names = Gene.pluck(:name).sort
+    gene_claim_aliases = GeneClaimAlias.pluck(:alias).sort
     expect(gene_names).to eq gene_claim_aliases
   end
 
@@ -30,8 +30,8 @@ describe Genome::Groupers::GeneGrouper do
 
     Genome::Groupers::GeneGrouper.run
 
-    expect(DataModel::Gene.all.count).to eq DataModel::GeneClaimAlias.all.count - 1
-    expect(DataModel::Gene.where(name: gene_claim_alias.alias).count).to eq 0
+    expect(Gene.all.count).to eq GeneClaimAlias.all.count - 1
+    expect(Gene.where(name: gene_claim_alias.alias).count).to eq 0
   end
 
   it 'should add the gene claims used to create the gene entities to their genes' do

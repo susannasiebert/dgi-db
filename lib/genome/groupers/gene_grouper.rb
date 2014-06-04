@@ -34,7 +34,7 @@ module Genome
       end
 
       def self.gene_claim_alias_scope
-        DataModel::GeneClaimAlias.includes(gene_claim: [:genes, :source])
+        GeneClaimAlias.eager_load(gene_claim: [:genes, :source])
       end
 
       def self.preload_aliases(query)
@@ -46,7 +46,7 @@ module Genome
       end
 
       def self.preload_gene_names
-        DataModel::Gene.includes(:gene_claims).all.group_by(&:name)
+        Gene.includes(:gene_claims).all.group_by(&:name)
       end
 
       def self.create_groups
@@ -59,7 +59,7 @@ module Genome
               gene_claim.genes << gene unless gene_claim.genes.include?(gene)
             end
           else
-            @gene_names_to_genes[gene_name] = [DataModel::Gene.new.tap do |g|
+            @gene_names_to_genes[gene_name] = [Gene.new.tap do |g|
               g.name = gene_name
               g.gene_claims = gene_claims
               g.save
@@ -98,7 +98,7 @@ module Genome
       end
 
       def self.gene_claims_not_in_groups
-        DataModel::GeneClaim.eager_load(:genes, :gene_claim_aliases)
+        GeneClaim.eager_load(:genes, :gene_claim_aliases)
           .where('gene_claims_genes.gene_id IS NULL')
       end
     end

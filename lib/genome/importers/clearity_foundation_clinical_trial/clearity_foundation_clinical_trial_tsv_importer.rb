@@ -8,8 +8,8 @@
               citation: 'https://www.clearityfoundation.org/form/findtrials.aspx',
               site_url: 'https://www.clearityfoundation.org/form/findtrials.aspx',
               source_db_version: '15-June-2013',
-              source_type_id: DataModel::SourceType.INTERACTION,
-              source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
+              source_type_id: SourceType.INTERACTION,
+              source_trust_level_id: SourceTrustLevel.EXPERT_CURATED,
               source_db_name: 'ClearityFoundationClinicalTrial',
               full_name: 'Clearity Foundation Clinical Trial',
           }

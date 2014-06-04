@@ -73,7 +73,7 @@ describe LookupGenes do
 
     it 'should send the correct eager loading scope to the underlying model' do
       genes = (1..3).map { Fabricate(:gene) }
-      [DataModel::Gene, DataModel::GeneClaimAlias, DataModel::GeneClaim].each do |klass|
+      [Gene, GeneClaimAlias, GeneClaim].each do |klass|
         expect(klass).to receive(:for_search).once.and_return(klass)
       end
       LookupGenes.find(genes.map(&:name), :for_search, DummyWrapper)

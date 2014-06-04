@@ -14,7 +14,7 @@ class DrugClaimTypeFilter
   end
 
   def resolve
-    Set.new DataModel::DrugClaimType
+    Set.new DrugClaimType
       .where('lower(type) = ?', @type)
       .joins(drug_claims: [:interaction_claims])
       .select('interaction_claims.id')

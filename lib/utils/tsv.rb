@@ -1,11 +1,11 @@
 module Utils
   module TSV
     def self.generate_interactions_tsv(filename = 'interactions.tsv')
-      write_tsv_file_for_query(filename, DataModel::Gene.for_search, 'interaction')
+      write_tsv_file_for_query(filename, Gene.for_search, 'interaction')
     end
 
     def self.generate_categories_tsv(filename = 'categories.tsv')
-      write_tsv_file_for_query(filename, DataModel::Gene.for_gene_categories, 'category')
+      write_tsv_file_for_query(filename, Gene.for_gene_categories, 'category')
     end
 
     private

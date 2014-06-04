@@ -2,7 +2,7 @@ module Genome
   module Normalizers
     class PopulateCounters
       def self.populate_source_counters
-        DataModel::Source.all.each do |source|
+        Source.all.each do |source|
           source.gene_claims_count = source.gene_claims.pluck(:id).size
           source.drug_claims_count = source.drug_claims.pluck(:id).size
           source.interaction_claims_count = source.interaction_claims.pluck(:id).size
