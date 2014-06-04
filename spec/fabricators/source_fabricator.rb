@@ -2,7 +2,7 @@ def count_initializer(source_types)
   ->(attrs) { source_types.include?(attrs[:source_type].type) ? rand(1000) : 0 }
 end
 
-Fabricator(:source, class_name: 'DataModel::Source') do
+Fabricator(:source) do
   source_type
   source_trust_level
   source_db_name { sequence(:source_db_name) { |i| "Source##{i}" } }
@@ -19,10 +19,10 @@ Fabricator(:source, class_name: 'DataModel::Source') do
   drug_claims_in_groups_count { |attrs| rand(attrs[:drug_claims_count]) }
 end
 
-Fabricator(:source_type, class_name: 'DataModel::SourceType') do
+Fabricator(:source_type) do
   type { %w{gene drug interaction potentially_druggable}.sample }
 end
 
-Fabricator(:source_trust_level, class_name: 'DataModel::SourceTrustLevel') do
+Fabricator(:source_trust_level) do
   level { ['Expert curated', 'Non-curated'].sample }
 end
