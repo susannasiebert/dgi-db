@@ -18,6 +18,7 @@ gem 'jbuilder'
 gem 'lograge'
 gem 'syslog-logger'
 gem 'rye'
+gem 'actionpack-page_caching'
 
 group :production do
   gem 'dalli'
