@@ -99,6 +99,11 @@ namespace :dgidb do
       Rake::Task['dgidb:update:pubchem'].execute
 
       # Cleanup
+      Rake::Task['dgidb:update:postprocessing']
+    end
+
+    desc 'postprocessing'
+    task postprocessing: :environment do
       puts 'Grouping genes...'
       Genome::Groupers::GeneGrouper.run
       puts 'Importing pathways...'

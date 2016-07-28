@@ -11,6 +11,7 @@ module Utils
     def self.update_druggable_gene_tsvs_archive(filename = Rails.root.join('data', 'druggable_gene_tsvs.tar.gz'))
       old_dir = Dir.pwd
       Dir.chdir(filename.parent)
+      FileUtils.rmtree(filename.basename('.tar.gz'))
       system("tar -xvzf #{filename.basename}")
       Dir.chdir(filename.basename('.tar.gz'))
 
@@ -22,7 +23,7 @@ module Utils
         copy_tsv(source, 'INTERACTIONS')
       end
 
-      copy_tsv('GO', 'TARGETS')
+      # copy_tsv('GO', 'TARGETS') TODO: Implement GetGo
 
       Dir.chdir(filename.parent)
       system("tar -czf #{filename} #{filename.basename('.tar.gz')}") && FileUtils.rmtree(filename.basename('.tar.gz'))
