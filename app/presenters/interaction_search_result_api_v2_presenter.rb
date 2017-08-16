@@ -19,6 +19,14 @@ class InteractionSearchResultApiV2Presenter
     gene.long_name
   end
 
+  def entrez_id
+    gene.entrez_id
+  end
+
+  def chembl_id
+    drug.chembl_id
+  end
+
   def type
     @result.type
   end
